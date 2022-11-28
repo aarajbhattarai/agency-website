@@ -348,5 +348,5 @@ export async function getGlobalData(locale) {
 
   const global = await globalRes.json()
   return global.data.global
-  console.log(global.data.global)
+  // console.log(global.data.global)
 }

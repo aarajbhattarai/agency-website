@@ -12,11 +12,12 @@ import NextImage from "./image"
 import CustomLink from "./custom-link"
 import LocaleSwitch from "../locale-switch"
 import Image from "next/image"
-
+// Pass the pageContext for localization
+// const Navbar = ({ navbar, pageContext }) => {
 const Navbar = ({ navbar, pageContext }) => {
   const router = useRouter()
   const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false)
-  console.log(navbar.logo)
+  // console.log(navbar.logo)
   return (
     <>
       {/* The actual navbar */}
@@ -28,8 +29,8 @@ const Navbar = ({ navbar, pageContext }) => {
               <a className="h-8 w-32">
                 {/* <NextImage width="120" height="33" media={navbar.logo} /> */}
                 {/* <Image width="120" height="33" src="/black_full_logo.png" /> */}
-               
-                <Image src={navbar.logo.data.attributes.url} width="120" height="33" />
+               <NextImage width="120" height="33" media={navbar.logo} />
+                {/* <Image src={navbar.logo.data.attributes.url} width="120" height="33" /> */}
               </a>
             </Link>
             {/* List of links on desktop */}
@@ -47,11 +48,11 @@ const Navbar = ({ navbar, pageContext }) => {
           </div>
           <div className="flex">
             {/* Locale Switch Mobile */}
-            {pageContext.localizedPaths && (
+            {/* {pageContext.localizedPaths && (
               <div className="md:hidden">
                 <LocaleSwitch pageContext={pageContext} />
               </div>
-            )}
+            )} */}
             {/* Hamburger menu on mobile */}
             <button
               onClick={() => setMobileMenuIsShown(true)}
@@ -70,11 +71,11 @@ const Navbar = ({ navbar, pageContext }) => {
               </div>
             )}
             {/* Locale Switch Desktop */}
-            {pageContext.localizedPaths && (
+            {/* {pageContext.localizedPaths && (
               <div className="hidden md:block">
                 <LocaleSwitch pageContext={pageContext} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </nav>

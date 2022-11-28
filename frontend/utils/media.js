@@ -13,3 +13,12 @@ export function getStrapiMedia(url) {
     process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
   }${url}`
 }
+
+// import { getStrapiURL } from "./api";
+
+// export function getStrapiMedia(media) {
+// // //   const { url } = media.data.attributes;
+// const { url } = media
+//   const imageUrl = url.startsWith("/") ? getStrapiURL(url) : url;
+//   return imageUrl;
+// }
