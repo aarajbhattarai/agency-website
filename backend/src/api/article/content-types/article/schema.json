@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "des": {
+      "type": "richtext"
+    },
+    "dyn": {
+      "type": "dynamiczone",
+      "components": [
+        "elements.feature-column",
+        "elements.feature",
+        "elements.feature-row"
+      ]
+    }
+  }
+}

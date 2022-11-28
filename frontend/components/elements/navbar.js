@@ -11,11 +11,12 @@ import ButtonLink from "./button-link"
 import NextImage from "./image"
 import CustomLink from "./custom-link"
 import LocaleSwitch from "../locale-switch"
+import Image from "next/image"
 
 const Navbar = ({ navbar, pageContext }) => {
   const router = useRouter()
   const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false)
-
+  console.log(navbar.logo)
   return (
     <>
       {/* The actual navbar */}
@@ -25,7 +26,10 @@ const Navbar = ({ navbar, pageContext }) => {
           <div className="flex flex-row items-center">
             <Link href="/">
               <a className="h-8 w-32">
-                <NextImage width="120" height="33" media={navbar.logo} />
+                {/* <NextImage width="120" height="33" media={navbar.logo} /> */}
+                {/* <Image width="120" height="33" src="/black_full_logo.png" /> */}
+               
+                <Image src={navbar.logo.data.attributes.url} width="120" height="33" />
               </a>
             </Link>
             {/* List of links on desktop */}
