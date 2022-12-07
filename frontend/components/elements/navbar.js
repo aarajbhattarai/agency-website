@@ -27,9 +27,13 @@ const Navbar = ({ navbar, pageContext }) => {
               <a className="h-8 w-32">
                 <NextImage width="120" height="33" media={navbar.logo} />
               </a>
-            </Link>
+            </Link> 
+          </div>
+
+          
             {/* List of links on desktop */}
-            <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10">
+          <div className="flex flex-row items-center">
+            <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10 pr-2.5">
               {navbar.links.map((navLink) => (
                 <li key={navLink.id}>
                   <CustomLink link={navLink} locale={router.locale}>
@@ -37,11 +41,8 @@ const Navbar = ({ navbar, pageContext }) => {
                       {navLink.text}
                     </div>
                   </CustomLink>
-                </li>
-              ))}
+                </li>))}
             </ul>
-          </div>
-          <div className="flex">
             {/* Locale Switch Mobile */}
             {pageContext.localizedPaths && (
               <div className="md:hidden">
