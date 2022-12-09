@@ -13,7 +13,7 @@ const Hero = ({ data }) => {
         {/* Big title */}
         <h1 className="title mt-2 sm:mt-0 mb-4 sm:mb-2">{data.title}</h1>
         {/* Description paragraph */}
-        <p className="text-xl mb-6">{data.description}</p>
+        <p className="text-gray-500 text-xl mb-6">{data.description}</p>
         {/* Buttons row */}
         <div className="flex flex-row flex-wrap gap-4">
           {data.buttons.map((button) => (
