@@ -232,6 +232,17 @@ export async function getPageData({ slug, locale, preview }) {
                     }
                     title
                   }
+                  ... on ComponentSectionsContactForm {
+                    id
+                    title
+                    description
+                    address
+                    phone
+                    email
+                    facebook
+                    instagram
+                    twitter
+                  }
                 }
               }
             }
@@ -348,4 +359,36 @@ export async function getGlobalData(locale) {
 
   const global = await globalRes.json()
   return global.data.global
+}
+
+export async function postContactform({ fullname, email, phone, message }) {
+  const gqlEndpoint = getStrapiURL("/graphql")
+  const globalRes = await fetch(gqlEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+      mutation createArticle($fullname: String!, $email: String!, $phone: String!, $message: String!) {
+        createContactForm(data: { fullname: $fullname, email:$email, phone:$phone, message:$message}) {
+          data {
+            id
+          }
+        }
+      }`,
+      variables: {
+        fullname,
+        email,
+        phone,
+        message,
+      },
+    }),
+  }).then((res) => res.json())
+
+  if (globalRes.data.createContactForm != null) {
+    return { success: true, message: "Done" }
+  }
+
+  return { success: false, message: "Error" }
 }
