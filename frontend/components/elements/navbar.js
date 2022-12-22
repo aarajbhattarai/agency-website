@@ -6,15 +6,20 @@ import { useRouter } from "next/router"
 import { getButtonAppearance } from "utils/button"
 import { mediaPropTypes, linkPropTypes, buttonLinkPropTypes } from "utils/types"
 import { MdMenu } from "react-icons/md"
-import MobileNavMenu from "./mobile-nav-menu"
+import MobileNavMenu from "./mobile-nav-menu/mobile-nav-menu"
 import ButtonLink from "./button-link"
 import NextImage from "./image"
-import CustomLink from "./custom-link"
-import LocaleSwitch from "../locale-switch"
+import DropDown from "./dropdown"
+import MenuLink from "./menu-link"
 
-const Navbar = ({ navbar, pageContext }) => {
+const Navbar = ({ navbar, menuList }) => {
   const router = useRouter()
   const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false)
+
+  const linkComponents = {
+    ComponentLinksLink: MenuLink,
+    ComponentElementsDropdown: DropDown,
+  }
 
   return (
     <>
@@ -33,22 +38,21 @@ const Navbar = ({ navbar, pageContext }) => {
           {/* List of links on desktop */}
           <div className="flex flex-row items-center">
             <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10 pr-2.5">
-              {navbar.links.map((navLink) => (
-                <li key={navLink.id}>
-                  <CustomLink link={navLink} locale={router.locale}>
-                    <div className="hover:text-gray-900 px-2 py-1">
-                      {navLink.text}
-                    </div>
-                  </CustomLink>
-                </li>
-              ))}
+              {menuList.map((navLink) => {
+                const LinkComponent = linkComponents[navLink.__typename]
+                return (
+                  <li key={navLink.id}>
+                    <LinkComponent navLink={navLink} locale={router.locale} />
+                  </li>
+                )
+              })}
             </ul>
             {/* Locale Switch Mobile */}
-            {pageContext.localizedPaths && (
+            {/* {pageContext.localizedPaths && (
               <div className="md:hidden">
                 <LocaleSwitch pageContext={pageContext} />
               </div>
-            )}
+            )} */}
             {/* Hamburger menu on mobile */}
             <button
               onClick={() => setMobileMenuIsShown(true)}
@@ -67,11 +71,11 @@ const Navbar = ({ navbar, pageContext }) => {
               </div>
             )}
             {/* Locale Switch Desktop */}
-            {pageContext.localizedPaths && (
+            {/* {pageContext.localizedPaths && (
               <div className="hidden md:block">
                 <LocaleSwitch pageContext={pageContext} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </nav>
@@ -80,6 +84,7 @@ const Navbar = ({ navbar, pageContext }) => {
       {mobileMenuIsShown && (
         <MobileNavMenu
           navbar={navbar}
+          menuList={menuList}
           closeSelf={() => setMobileMenuIsShown(false)}
         />
       )}

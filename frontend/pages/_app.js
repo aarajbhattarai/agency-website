@@ -4,7 +4,7 @@ import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { DefaultSeo } from "next-seo"
 import { getStrapiMedia } from "utils/media"
-import { getGlobalData } from "utils/api"
+import { getGlobalData, getNavbarMenus } from "utils/api"
 import "@/styles/index.css"
 
 const MyApp = ({ Component, pageProps }) => {
@@ -60,11 +60,13 @@ MyApp.getInitialProps = async (appContext) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext)
   const globalLocale = await getGlobalData(appContext.router.locale)
+  const menuList = await getNavbarMenus()
 
   return {
     ...appProps,
     pageProps: {
       global: globalLocale,
+      menuList: menuList
     },
   }
 }

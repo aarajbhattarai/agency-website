@@ -361,6 +361,58 @@ export async function getGlobalData(locale) {
   return global.data.global
 }
 
+export async function getNavbarMenus() {
+  const gqlEndpoint = getStrapiURL("/graphql")
+  const menuRes = await fetch(gqlEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query getmenu {
+          navMenu {
+            data {
+              attributes {
+                menu {
+                  __typename
+                  ... on ComponentLinksLink {
+                    id,
+                    url,
+                    newTab,
+                    text
+                  }
+                  ... on ComponentElementsDropdown {
+                    id,
+                    label,
+                    link {
+                      id,
+                      newTab,
+                      text,
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      `,
+    }),
+  })
+
+  const menus = await menuRes.json()
+
+  const menuList = menus.data.navMenu.data.attributes.menu
+
+  if (menuList.length === 0) {
+    return null
+  }
+
+  return menuList
+}
+
 export async function postContactform({ fullname, email, phone, message }) {
   const gqlEndpoint = getStrapiURL("/graphql")
   const globalRes = await fetch(gqlEndpoint, {

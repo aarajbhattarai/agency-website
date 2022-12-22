@@ -10,7 +10,14 @@ import { getLocalizedPaths } from "utils/localize"
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
+const DynamicPage = ({
+  sections,
+  metadata,
+  preview,
+  global,
+  menuList,
+  pageContext,
+}) => {
   const router = useRouter()
 
   // Check if the required data was provided
@@ -33,7 +40,7 @@ const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
   }
 
   return (
-    <Layout global={global} pageContext={pageContext}>
+    <Layout global={global} pageContext={pageContext} menuList={menuList}>
       {/* Add meta tags for SEO*/}
       <Seo metadata={metadataWithDefaults} />
       {/* Display content sections */}
