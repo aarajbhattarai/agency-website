@@ -11,7 +11,6 @@ function flatten(text, child) {
 
 const RichText = ({ data }) => {
   const [navigation, setNavigation] = useState([])
-
   const nav = []
 
   function HeadingRenderer(props) {
@@ -30,7 +29,7 @@ const RichText = ({ data }) => {
 
   return (
     <div className="container relative flex justify-center flex-wrap">
-      <div className="hidden lg:flex px-5 py-12 flex-1 lg:max-w-[200px] justify-start relative lg:absolute top-0 left-0">
+      <div className="lg:flex px-5 py-12 flex-1 lg:max-w-[200px] justify-start relative lg:absolute top-0 left-0">
         <TableOfContent navigation={navigation} />
       </div>
       <div className="prose prose-lg py-12">

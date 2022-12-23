@@ -13,7 +13,7 @@ export default function TableOfContent({ className, navigation }) {
           </h2>
           <ul
             role="list"
-            className="mt-2 p-2 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200"
+            className="mt-2 p-2 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200 max-h-80 lg:max-h-[max-content] overflow-y-auto"
           >
             {navigation.map((link) => (
               <li key={link.href} className="relative">

@@ -10,7 +10,7 @@ import "@/styles/index.css"
 const MyApp = ({ Component, pageProps }) => {
   // Extract the data we need
   const { global } = pageProps
-  if (global == null) {
+  if (!global || global == null) {
     return <ErrorPage statusCode={404} />
   }
 
@@ -66,7 +66,7 @@ MyApp.getInitialProps = async (appContext) => {
     ...appProps,
     pageProps: {
       global: globalLocale,
-      menuList: menuList
+      menuList: menuList,
     },
   }
 }
