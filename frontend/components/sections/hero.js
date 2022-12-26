@@ -5,9 +5,9 @@ import NextImage from "../elements/image"
 
 const Hero = ({ data }) => {
   return (
-    <main className="container flex flex-col md:flex-row items-center justify-between py-12">
+    <main className="flex flex-col md:flex-row items-center overflow-y-hidden w-full justify-between py-12 h-screen">
       {/* Left column for content */}
-      <div className="flex-1 sm:pr-8">
+      <div className="flex-1 flex flex-col justify-center z-10 sm:pr-8 pl-8">
         {/* Hero section label */}
         <p className="uppercase tracking-wide font-semibold">{data.label}</p>
         {/* Big title */}
@@ -30,7 +30,7 @@ const Hero = ({ data }) => {
         </div>
       </div>
       {/* Right column for the image */}
-      <div className="flex-shrink-0 w-full md:w-6/12 mt-6 md:mt-0">
+      <div className="flex-1 w-full md:w-6/12 mt-6 md:mt-0">
         <NextImage media={data.picture} />
       </div>
     </main>
