@@ -358,7 +358,7 @@ export async function getGlobalData(locale) {
   })
 
   const global = await globalRes.json()
-  return global.data.global
+  return global.data.global.data
 }
 
 export async function getNavbarMenus() {
